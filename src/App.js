@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import './App.css';
 import ApiHelper from './Helpers/Api';
+import Map from './Components/Map';
+import Marker from './Components/Marker'
 
 class App extends Component {
     constructor(props) {
@@ -8,7 +10,9 @@ class App extends Component {
         this.state = {
             isLoaded: false,
             openChargeData: [],
-        }
+        };
+
+        this.generateMarkers = this.generateMarkers.bind(this);
     };
 
     componentDidMount() {
@@ -24,6 +28,16 @@ class App extends Component {
         });
     }
 
+    generateMarkers() {
+        let markers = [];
+
+        this.state.openChargeData.forEach((item, index) => {
+            markers.push(<Marker lat={item.AddressInfo.Latitude} lng={item.AddressInfo.Longitude} />)
+        });
+
+        return markers;
+    }
+
     render () {
         return (
             <div className="App">
@@ -32,6 +46,7 @@ class App extends Component {
                 </header>
                 <body>
                 {this.state.isLoaded ? "LOADED" : "not Loaded"}
+                <Map markers={this.generateMarkers()} />
                 </body>
             </div>
         );
