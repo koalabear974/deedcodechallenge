@@ -35,19 +35,20 @@ class App extends Component {
             markers.push(<Marker lat={item.AddressInfo.Latitude} lng={item.AddressInfo.Longitude} />)
         });
 
-        return markers;
-    }
+    render() {
+        if(!this.state.isLoaded) {
+            return (
+                <div className="App">
+                    <div style={{position: 'absolute', left: '50%', top: '50%', fontSize: '2rem'}}>
+                        Loading...
+                    </div>
+                </div>
+            );
+        }
 
-    render () {
         return (
             <div className="App">
-                <header className="App-header">
-                    Electric car charging stations
-                </header>
-                <body>
-                {this.state.isLoaded ? "LOADED" : "not Loaded"}
-                <Map markers={this.generateMarkers()} />
-                </body>
+                <Map markers={this.generateMarkers()}/>
             </div>
         );
     }
