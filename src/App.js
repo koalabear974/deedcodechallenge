@@ -12,12 +12,15 @@ class App extends Component {
     };
 
     componentDidMount() {
-        ApiHelper.fetchOpenChargeData().then(openChargeData => {
+        // ApiHelper.fetchOpenChargeData().then(openChargeData => {
+        ApiHelper.getChargeData().then(openChargeData => {
             console.log("loaded", openChargeData);
             this.setState({
                 isLoaded: true,
                 openChargeData: openChargeData,
             })
+        }).catch(e => {
+            // TODO: Manage error when unable to fetch data
         });
     }
 
