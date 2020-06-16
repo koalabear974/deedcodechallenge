@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 import GoogleMapReact from 'google-map-react';
-import Marker from './Marker'
-
-const AnyReactComponent = ({text}) => <div>{text}</div>;
 
 const googleMapKey = 'AIzaSyD6T8zNeCCXnR0NhbSplOFvaHG6Jfa6X70';
 

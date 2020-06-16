@@ -2,10 +2,8 @@ import {timeout} from './Util.js'
 
 const openChargeMapUrl = "https://api.openchargemap.io/v3/poi/?output=json&countrycode=DE&maxresults=10&compact=true&verbose=false&latitude=52.520008&longitude=13.404954&distance=10&distanceunit=KM";
 const APITimeout = 10000;
+
 export default{
-    getUrl: () => {
-        return openChargeMapUrl;
-    },
     fetchOpenChargeData: async () => {
         let data = [];
         await timeout(APITimeout, fetch(openChargeMapUrl))

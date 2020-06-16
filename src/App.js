@@ -16,9 +16,10 @@ class App extends Component {
     };
 
     componentDidMount() {
-        // ApiHelper.fetchOpenChargeData().then(openChargeData => {
-        ApiHelper.getChargeData().then(openChargeData => {
-            console.log("loaded", openChargeData);
+        // Was use for development
+        // ApiHelper.getChargeData().then(openChargeData => {
+
+        ApiHelper.fetchOpenChargeData().then(openChargeData => {
             this.setState({
                 isLoaded: true,
                 openChargeData: openChargeData,
@@ -29,11 +30,10 @@ class App extends Component {
     }
 
     generateMarkers() {
-        let markers = [];
-
-        this.state.openChargeData.forEach((item, index) => {
-            markers.push(<Marker lat={item.AddressInfo.Latitude} lng={item.AddressInfo.Longitude} />)
+        return this.state.openChargeData.map((item, index) => {
+            return <Marker lat={item.AddressInfo.Latitude} lng={item.AddressInfo.Longitude}/>;
         });
+    }
 
     render() {
         if(!this.state.isLoaded) {
